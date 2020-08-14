@@ -36,6 +36,8 @@ public class welcomeToJava extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -59,23 +61,21 @@ public class welcomeToJava extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsuario)
+                    .addComponent(lblContra)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblContra)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEntrar)
-                                .addGap(124, 124, 124)
-                                .addComponent(btnCancelar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtContra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addComponent(btnEntrar)
+                        .addGap(124, 124, 124)
+                        .addComponent(btnCancelar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtContra, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
+                        .addGap(69, 69, 69)
                         .addComponent(lblWelcome)))
-                .addGap(0, 78, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +130,7 @@ public class welcomeToJava extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                nlblUsuarioomeToJava().setVisible(true);
+                
             }
         });
     }
