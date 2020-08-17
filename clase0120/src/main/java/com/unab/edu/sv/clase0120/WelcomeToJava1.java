@@ -19,6 +19,7 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
      */
     public WelcomeToJava1() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,17 +31,15 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtContra = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
         lblContra = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtContra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         lblUsuario.setText("USUARIO");
@@ -62,6 +61,8 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        txtContra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,7 +77,6 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(204, 204, 204))
-                    .addComponent(txtContra)
                     .addComponent(txtUsuario)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -84,7 +84,8 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(105, 105, 105)))
+                        .addGap(105, 105, 105))
+                    .addComponent(txtContra))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -97,10 +98,10 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario)
                 .addGap(18, 18, 18)
-                .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -109,13 +110,14 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ Operacion usu = new Operacion();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        user usu = new user();
+       
         String usuario = txtUsuario.getText();
         String contra = txtContra.getText();
-        if (usuario.equals("rafael")&&contra.equals("1234")){
+        if (usuario.equals("rafael")&&contra.equals("123")){
             usu.show();
+          
              txtUsuario.setText("");
             txtContra.setText("");
         }
@@ -168,7 +170,7 @@ public class WelcomeToJava1 extends javax.swing.JFrame {
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
