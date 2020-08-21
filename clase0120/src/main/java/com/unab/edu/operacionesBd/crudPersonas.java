@@ -5,8 +5,14 @@
  */
 package com.unab.edu.operacionesBd;
 
+import com.unab.edu.sv.DAO.ClsPersona;
+import com.unab.edu.sv.clase0120.Entidades.personas;
 import com.unab.edu.sv.clase0120.mysql.conexionBd;
 import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.SingleSelectionModel;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +25,32 @@ public class crudPersonas extends javax.swing.JFrame {
      */
     public crudPersonas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        MostrarTablaPersona();
+    
     }
-
+    void MostrarTablaPersona(){
+        String TITULOS [] = {"ID","Nombre","Apellido","Edad","Sexo"};
+        DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
+        ClsPersona ClasePersona = new ClsPersona();
+        ArrayList <personas> persona = ClasePersona.mostrarPersona();
+        
+       String filas [] = new String[5];
+       
+        for (var IterarDatosPersonas : persona ){
+        filas[0]= String.valueOf(IterarDatosPersonas.getIdpersona());
+        filas[1]= IterarDatosPersonas.getNombre();
+        filas[2]= IterarDatosPersonas.getApellido();
+        filas[3]= String.valueOf(IterarDatosPersonas.getEdad());
+        filas[4] = IterarDatosPersonas.getSexo();
+        ModeloTabla.addRow(filas);
+        }
+        tb_persona.setModel(ModeloTabla);
+     
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +60,9 @@ public class crudPersonas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        tb_Persona = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
@@ -46,9 +78,21 @@ public class crudPersonas extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnCon = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_persona = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,22 +200,9 @@ public class crudPersonas extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("operaciones CRUD", jPanel3);
+        tb_Persona.addTab("operaciones CRUD", jPanel3);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("mostrar Datos", jPanel1);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_persona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -182,9 +213,9 @@ public class crudPersonas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tb_persona);
 
-        jTabbedPane1.addTab("tab3", jScrollPane1);
+        tb_Persona.addTab("Mostrar Datos", jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,13 +223,13 @@ public class crudPersonas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tb_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tb_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 366, Short.MAX_VALUE))
         );
 
@@ -256,11 +287,12 @@ public class crudPersonas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane tb_Persona;
+    private javax.swing.JTable tb_persona;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtID;
