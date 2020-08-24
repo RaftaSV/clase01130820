@@ -46,11 +46,44 @@ public class ClsPersona {
 
     public void AgregarPersona(personas Per) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona()");
-            
-
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?)");
+            Statement.setString("pNombre", Per.getNombre());
+            Statement.setString("pApellido", Per.getApellido());
+            Statement.setInt("pEdad", Per.getEdad());
+            Statement.setString("pSexo", Per.getSexo());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Guardado Exitoso");
         } catch (SQLException ex) {
-            Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null,ex);
+            Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }
+
+    public void EliminarPersona(personas Per) {
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_D_Persona(?)");
+            Statement.setInt("pIdPersona", Per.getIdpersona());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Eliminado Exitoso");
+        } catch (SQLException ex) {
+            Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    public void EditarPersona(personas Per) {
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+            Statement.setInt("pIdPersona", Per.getIdpersona());
+            Statement.setString("pNombre", Per.getNombre());
+            Statement.setString("pApellido", Per.getApellido());
+            Statement.setInt("pEdad", Per.getEdad());
+            Statement.setString("pSexo", Per.getSexo());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Cambio Exitoso");
+        } catch (SQLException ex) {
+            Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
 
     }
