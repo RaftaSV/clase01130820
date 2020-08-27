@@ -5,18 +5,18 @@
  */
 package com.unab.edu.sv.clase0120.Entidades;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  *
  * @author rafap
  */
 @Data
-public class personas {
-
-    protected int idpersona;
-    protected String nombre;
-    protected String apellido;
-    protected int edad;
-    protected String sexo;
+@EqualsAndHashCode(callSuper=false)
+public class Estudiante extends personas{
+    private int idEstudiante;
+    private int matricula;
+   
+    
+    
 }

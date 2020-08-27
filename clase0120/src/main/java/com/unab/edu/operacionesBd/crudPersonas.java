@@ -228,6 +228,11 @@ public class crudPersonas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_persona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_personaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tb_persona);
 
         btnCRUD.addTab("Mostrar Datos", jScrollPane3);
@@ -291,6 +296,21 @@ public class crudPersonas extends javax.swing.JFrame {
         persona.EliminarPersona(Persona);
         MostrarTablaPersona();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tb_personaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_personaMouseClicked
+        btnCRUD.setSelectedIndex(btnCRUD.indexOfComponent(jPanel3));
+        int fila = tb_persona.getSelectedRow();
+        String ID=String.valueOf( tb_persona.getValueAt(fila, 0));
+        txtID.setText(ID);
+        String nombre = String.valueOf( tb_persona.getValueAt(fila, 1));
+        txtNombre.setText(nombre);
+        String apellido =String.valueOf( tb_persona.getValueAt(fila, 2));
+        txtApellido.setText(apellido);
+        String edad = String.valueOf( tb_persona.getValueAt(fila, 3));
+        txtEdad.setText(edad);
+        String sexo = String.valueOf( tb_persona.getValueAt(fila, 4));
+        txtSexo.setText(sexo);
+    }//GEN-LAST:event_tb_personaMouseClicked
 
     /**
      * @param args the command line arguments
