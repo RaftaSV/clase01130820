@@ -78,6 +78,7 @@ public class crudEstudiante extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_Per = new javax.swing.JTable();
         lblIDPersona1 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
         lblBienbenidos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,6 +180,15 @@ public class crudEstudiante extends javax.swing.JFrame {
         lblIDPersona1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIDPersona1.setText("Selecione la persona");
 
+        btnLimpiar.setBackground(new java.awt.Color(255, 51, 51));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -202,16 +212,19 @@ public class crudEstudiante extends javax.swing.JFrame {
                             .addComponent(lblPass)
                             .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNIE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnGuardar)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnEliminar))
-                            .addComponent(txtNIE, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUsuario)
                             .addComponent(txtIDPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblIDPersona)
                             .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(btnGuardar)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(btnEliminar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLimpiar))
+                                .addComponent(txtNIE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -249,7 +262,8 @@ public class crudEstudiante extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -349,6 +363,11 @@ public class crudEstudiante extends javax.swing.JFrame {
         int fila = tb_Per.getSelectedRow();
         txtIDPersona.setText(String.valueOf(tb_Per.getValueAt(fila, 0)));
     }//GEN-LAST:event_tb_PerMouseClicked
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     public void limpiar() {
         txtID.setText("0");
         txtIDPersona.setText("");
@@ -412,6 +431,7 @@ public class crudEstudiante extends javax.swing.JFrame {
     private javax.swing.JTabbedPane Table;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
