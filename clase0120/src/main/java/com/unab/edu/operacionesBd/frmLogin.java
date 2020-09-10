@@ -109,15 +109,19 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         ClsLoginEstudiante es = new ClsLoginEstudiante();
         String usu = txtUsu.getText();
         String pass = txtPass.getText();
         var resutadoCon = es.Estudiante(usu, pass);
-        if (resutadoCon==true){
-            JOptionPane.showMessageDialog(null, "Wellcome");
-        }else{
-            JOptionPane.showMessageDialog(null, "Close");
+        if (!usu.isEmpty() && !pass.isEmpty()) {
+            if (resutadoCon == true) {
+                JOptionPane.showMessageDialog(null, "Wellcome");
+            } else {
+                JOptionPane.showMessageDialog(null, "Close");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
