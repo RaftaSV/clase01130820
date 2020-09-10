@@ -21,10 +21,12 @@ public class crudEstudiante extends javax.swing.JFrame {
     /**
      * Creates new form crudEstudiante
      */
+    int dato  =0;
     public crudEstudiante() {
         initComponents();
         Mostrarper();
         MostrarEstudiantes();
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -198,7 +200,7 @@ public class crudEstudiante extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -225,7 +227,7 @@ public class crudEstudiante extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnLimpiar))
                                 .addComponent(txtNIE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(362, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,8 +313,8 @@ public class crudEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-        if (Integer.parseInt(txtID.getText()) == 0) {
+ // TODO add your handling code here:
+        if (dato == 0) {
             Estudiante es = new Estudiante();
             es.setMatricula(Integer.parseInt(txtMatricula.getText()));
             es.setIdpersona(Integer.parseInt(txtIDPersona.getText()));
@@ -322,6 +324,7 @@ public class crudEstudiante extends javax.swing.JFrame {
             ClsEstudiante estudiante = new ClsEstudiante();
             estudiante.GuardarEstudiante(es);
              System.out.println(es);
+              MostrarEstudiantes();
         } else {
             Estudiante es = new Estudiante();
             es.setIdEstudiante(Integer.parseInt(txtID.getText()));
@@ -332,6 +335,8 @@ public class crudEstudiante extends javax.swing.JFrame {
             es.setNIE(Integer.parseInt(txtNIE.getText()));
             ClsEstudiante estudiante = new ClsEstudiante();
             estudiante.ActualizarEstudiante(es);
+            dato=0;
+             MostrarEstudiantes();
         }
        
         MostrarEstudiantes();
@@ -355,6 +360,7 @@ public class crudEstudiante extends javax.swing.JFrame {
         txtPass.setText(pass);
         String nie = String.valueOf(tb_Estudiante.getValueAt(fila, 6));
         txtNIE.setText(nie);
+        dato=1;
 
     }//GEN-LAST:event_tb_EstudianteMouseClicked
 
@@ -370,6 +376,7 @@ public class crudEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
     public void limpiar() {
         txtID.setText("0");
+        dato=0;
         txtIDPersona.setText("");
         txtMatricula.setText("");
         txtNIE.setText("");
