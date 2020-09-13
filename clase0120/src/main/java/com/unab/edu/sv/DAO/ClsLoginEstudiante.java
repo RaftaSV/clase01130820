@@ -29,7 +29,7 @@ public class ClsLoginEstudiante {
         ArrayList<Estudiante> ListaUsusarioPass = new ArrayList<>();
         ArrayList<Estudiante> ListarContra = new ArrayList<>();
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_S_LOGUIESTUDIANTE(?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_S_LOGINESTUDIANTE(?,?)");
             Statement.setString("pUsuario", Usuario);
             Statement.setString("pPass", pass);
             ResultSet ResultadoConsulta = Statement.executeQuery();
@@ -50,20 +50,15 @@ public class ClsLoginEstudiante {
             ResultSet rs2 = st2.executeQuery();
             while (rs2.next()) {
                 Estudiante escrip = new Estudiante();
-
-                escrip.setPass(rs2.getNString("crip"));
+                escrip.setPass(rs2.getString("crip"));
                 ListarContra.add(escrip);
             }
 
             String passcrip = null;
             for (var iterador : ListarContra) {
-
                 passcrip = iterador.getPass();
-
                 pass = passcrip;
-
-                System.out.println(pass);
-                // System.out.println(usuBase +"  hh  ");
+              
             }
             if (usuBase != null && PassBase != null) {
                 if (usuBase.equals(Usuario) && PassBase.equals(pass)) {

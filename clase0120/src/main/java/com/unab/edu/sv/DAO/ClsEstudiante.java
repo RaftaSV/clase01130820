@@ -61,7 +61,7 @@ public class ClsEstudiante {
             conectar.close();
         } catch (SQLException ex) {
             Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex);
+                JOptionPane.showMessageDialog(null, ex);
         }
 
     }

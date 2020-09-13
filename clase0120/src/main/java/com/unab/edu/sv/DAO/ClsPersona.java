@@ -29,7 +29,6 @@ public class ClsPersona {
             ResultSet ResultadoConsulta = Statement.executeQuery();
             while (ResultadoConsulta.next()) {
                 personas Persona = new personas();
-
                 Persona.setIdpersona(ResultadoConsulta.getInt("idpersona"));
                 Persona.setNombre(ResultadoConsulta.getString("nombre"));
                 Persona.setApellido(ResultadoConsulta.getString("apellido"));
@@ -53,6 +52,7 @@ public class ClsPersona {
             Statement.setString("pSexo", Per.getSexo());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado Exitoso");
+            conectar.close();
         } catch (SQLException ex) {
             Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex);
