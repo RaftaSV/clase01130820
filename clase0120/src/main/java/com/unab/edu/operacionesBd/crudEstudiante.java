@@ -21,14 +21,16 @@ public class crudEstudiante extends javax.swing.JFrame {
     /**
      * Creates new form crudEstudiante
      */
-    int dato  =0;
+    int dato = 0;
+
     public crudEstudiante() {
         initComponents();
         Mostrarper();
         MostrarEstudiantes();
-        
+
         this.setLocationRelativeTo(null);
     }
+    String passs = "";
 
     void MostrarEstudiantes() {
         String Titulos[] = {"IDEstudiante", "Matricula", "IDPersona", "Nombre", "Usuario", "Pass", "NIE"};
@@ -196,7 +198,7 @@ public class crudEstudiante extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,7 +229,7 @@ public class crudEstudiante extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnLimpiar))
                                 .addComponent(txtNIE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(362, Short.MAX_VALUE))))
+                        .addContainerGap(381, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +285,7 @@ public class crudEstudiante extends javax.swing.JFrame {
                 .addComponent(lblBienbenidos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(Table)
                 .addContainerGap())
         );
@@ -313,7 +315,7 @@ public class crudEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
- // TODO add your handling code here:
+        // TODO add your handling code here:
         if (dato == 0) {
             Estudiante es = new Estudiante();
             es.setMatricula(Integer.parseInt(txtMatricula.getText()));
@@ -323,22 +325,35 @@ public class crudEstudiante extends javax.swing.JFrame {
             es.setNIE(Integer.parseInt(txtNIE.getText()));
             ClsEstudiante estudiante = new ClsEstudiante();
             estudiante.GuardarEstudiante(es);
-             System.out.println(es);
-              MostrarEstudiantes();
+            System.out.println(es);
+            MostrarEstudiantes();
         } else {
-            Estudiante es = new Estudiante();
-            es.setIdEstudiante(Integer.parseInt(txtID.getText()));
-            es.setMatricula(Integer.parseInt(txtMatricula.getText()));
-            es.setIdpersona(Integer.parseInt(txtIDPersona.getText()));
-            es.setUsu(txtUsuario.getText());
-            es.setPass(txtPass.getText());
-            es.setNIE(Integer.parseInt(txtNIE.getText()));
-            ClsEstudiante estudiante = new ClsEstudiante();
-            estudiante.ActualizarEstudiante(es);
-            dato=0;
-             MostrarEstudiantes();
+            if (passs.endsWith(txtPass.getText())) {
+                Estudiante es = new Estudiante();
+                es.setIdEstudiante(Integer.parseInt(txtID.getText()));
+                es.setMatricula(Integer.parseInt(txtMatricula.getText()));
+                es.setIdpersona(Integer.parseInt(txtIDPersona.getText()));
+                es.setUsu(txtUsuario.getText());
+                es.setPass(txtPass.getText());
+                es.setNIE(Integer.parseInt(txtNIE.getText()));
+                ClsEstudiante estudiante = new ClsEstudiante();
+                estudiante.ActualizarEstudianteSC(es);
+
+                MostrarEstudiantes();
+            } else {
+                Estudiante est = new Estudiante();
+                est.setIdEstudiante(Integer.parseInt(txtID.getText()));
+                est.setMatricula(Integer.parseInt(txtMatricula.getText()));
+                est.setIdpersona(Integer.parseInt(txtIDPersona.getText()));
+                est.setUsu(txtUsuario.getText());
+                est.setPass(txtPass.getText());
+                est.setNIE(Integer.parseInt(txtNIE.getText()));
+                ClsEstudiante estudiante = new ClsEstudiante();
+                estudiante.ActualizarEstudiante(est);
+
+            }
         }
-       
+
         MostrarEstudiantes();
         limpiar();
 
@@ -358,9 +373,10 @@ public class crudEstudiante extends javax.swing.JFrame {
         txtUsuario.setText(usu);
         String pass = String.valueOf(tb_Estudiante.getValueAt(fila, 5));
         txtPass.setText(pass);
+        passs=pass;
         String nie = String.valueOf(tb_Estudiante.getValueAt(fila, 6));
         txtNIE.setText(nie);
-        dato=1;
+        dato = 1;
 
     }//GEN-LAST:event_tb_EstudianteMouseClicked
 
@@ -376,7 +392,7 @@ public class crudEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
     public void limpiar() {
         txtID.setText("0");
-        dato=0;
+        dato = 0;
         txtIDPersona.setText("");
         txtMatricula.setText("");
         txtNIE.setText("");
@@ -385,7 +401,7 @@ public class crudEstudiante extends javax.swing.JFrame {
     }
 
     void Mostrarper() {
-         String Titulos[] = {"ID persona", "Nombre", "Apellido"};
+        String Titulos[] = {"ID persona", "Nombre", "Apellido"};
         DefaultTableModel modelo = new DefaultTableModel(null, Titulos);
         ClsPersona persona = new ClsPersona();
         ArrayList<personas> per = persona.mostrarPersona();

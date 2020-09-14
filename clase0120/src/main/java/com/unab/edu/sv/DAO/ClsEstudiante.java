@@ -65,10 +65,30 @@ public class ClsEstudiante {
         }
 
     }
-
-    public void ActualizarEstudiante(Estudiante es) {
+        public void ActualizarEstudiante(Estudiante es) {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_U_ESTUDIANTE(?,?,?,?,?,?)");
+            Statement.setInt("pID", es.getIdEstudiante());
+            Statement.setInt("pMatricula", es.getMatricula());
+            Statement.setInt("pIdpersona", es.getIdpersona());
+            Statement.setString("pUsu", es.getUsu());
+            Statement.setString("pPass", es.getPass());
+            Statement.setInt("pNIE", es.getNIE());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Cambio exitoso");
+            conectar.close();
+         
+
+        } catch (Exception e) {
+            Logger.getLogger(ClsPersona.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
+    public void ActualizarEstudianteSC(Estudiante es) {
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_U_ESTUDIANTESC(?,?,?,?,?,?)");
             Statement.setInt("pID", es.getIdEstudiante());
             Statement.setInt("pMatricula", es.getMatricula());
             Statement.setInt("pIdpersona", es.getIdpersona());

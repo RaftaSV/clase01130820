@@ -30,6 +30,7 @@ public class crudProfesor extends javax.swing.JFrame {
         Limpiar();
     }
     int id = 0;
+    String pass="";
 
     @SuppressWarnings("unchecked")
 
@@ -73,6 +74,7 @@ public class crudProfesor extends javax.swing.JFrame {
         txtIdpersona.setText("");
         txtPass.setText("");
         txtUsu.setText("");
+        pass = "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -386,17 +388,30 @@ public class crudProfesor extends javax.swing.JFrame {
         } else {
 
             if (!txtDUI.getText().isEmpty() && !txtIdpersona.getText().isEmpty() && !txtPass.getText().isEmpty() && !txtUsu.getText().isEmpty()) {
-
-                Profesor profe = new Profesor();
-                profe.setIDprofesor(id);
-                profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
-                profe.setDUI(txtDUI.getText());
-                profe.setUsuario(txtUsu.getText());
-                profe.setPass(txtPass.getText());
-                ClsProfesor pro = new ClsProfesor();
-                pro.Actualizar(profe);
-                MostrarPro();
-                Limpiar();
+                if (pass.equals(txtPass.getText())) {
+                    Profesor prof = new Profesor();
+                    prof.setIDprofesor(id);
+                    prof.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
+                    prof.setDUI(txtDUI.getText());
+                    prof.setUsuario(txtUsu.getText());
+                    prof.setPass(txtPass.getText());
+                    ClsProfesor pro = new ClsProfesor();
+                    pro.Actualizarsc(prof);
+                    MostrarPro();
+                    Limpiar();
+                } else {
+                    Profesor profe = new Profesor();
+                    profe.setIDprofesor(id);
+                    profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
+                    profe.setDUI(txtDUI.getText());
+                    profe.setUsuario(txtUsu.getText());
+                    profe.setPass(txtPass.getText());
+                    ClsProfesor pro = new ClsProfesor();
+                    pro.Actualizar(profe);
+                    MostrarPro();
+                    Limpiar();
+                 
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Todos los campos son Obligatorio");
 
@@ -410,30 +425,31 @@ public class crudProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_personaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(id!=0){
-              Profesor pro = new Profesor();
-        pro.setIDprofesor(id);
-        ClsProfesor prof = new ClsProfesor();
-        prof.Eliminar(pro);
-        Limpiar();
-        MostrarPro();
-        }else{
-        JOptionPane.showMessageDialog(null,"Debe de seleccionar un profesor");
+        if (id != 0) {
+            Profesor pro = new Profesor();
+            pro.setIDprofesor(id);
+            ClsProfesor prof = new ClsProfesor();
+            prof.Eliminar(pro);
+            Limpiar();
+            MostrarPro();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar un profesor");
         }
-      
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tb_ProfesorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ProfesorMouseClicked
-       panelD.setSelectedIndex(panelD.indexOfComponent(jCRUD));
-       int fila = tb_Profesor.getSelectedRow();
-       String ID = String.valueOf(tb_Profesor.getValueAt(fila, 0));
-       id = Integer.valueOf(ID);
-       txtIdpersona.setText(String.valueOf(tb_Profesor.getValueAt(fila, 1)));
-       txtDUI.setText(String.valueOf(tb_Profesor.getValueAt(fila, 3)));
-       txtUsu.setText(String.valueOf(tb_Profesor.getValueAt(fila, 4)));
-       txtPass.setText(String.valueOf(tb_Profesor.getValueAt(fila, 5)));
-      
-        
+        panelD.setSelectedIndex(panelD.indexOfComponent(jCRUD));
+        int fila = tb_Profesor.getSelectedRow();
+        String ID = String.valueOf(tb_Profesor.getValueAt(fila, 0));
+        id = Integer.valueOf(ID);
+        txtIdpersona.setText(String.valueOf(tb_Profesor.getValueAt(fila, 1)));
+        txtDUI.setText(String.valueOf(tb_Profesor.getValueAt(fila, 3)));
+        txtUsu.setText(String.valueOf(tb_Profesor.getValueAt(fila, 4)));
+        pass = String.valueOf(tb_Profesor.getValueAt(fila, 5));
+        txtPass.setText(String.valueOf(tb_Profesor.getValueAt(fila, 5)));
+
+
     }//GEN-LAST:event_tb_ProfesorMouseClicked
 
     /**

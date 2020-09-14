@@ -75,7 +75,21 @@ public class ClsProfesor {
             System.out.println(e);
         }
     }
-
+    public void Actualizarsc(Profesor pro) {
+        try {
+            CallableStatement st = conectar.prepareCall("call SP_U_PROFESOR_SC(?,?,?,?,?)");
+            st.setInt("pID", pro.getIDprofesor());
+            st.setInt("pIdPersona", pro.getIDpersona());
+            st.setString("pDui", pro.getDUI());
+            st.setString("pUsuario", pro.getUsuario());
+            st.setString("pPass", pro.getPass());
+            st.executeQuery();
+            conectar.close();
+            JOptionPane.showMessageDialog(null, "Actualizado correctamente");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     public void Eliminar(Profesor pro) {
 
         try {
@@ -133,8 +147,7 @@ public class ClsProfesor {
                     Resul = true;
                 } else {
                     Resul = false;
-                    System.out.println(Usuariobase + " espacio " + Usu);
-                    System.out.println(pass + " espacio " + passcrip);
+                  
                 }
             }
 
