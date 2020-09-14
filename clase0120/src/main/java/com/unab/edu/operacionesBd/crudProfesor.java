@@ -145,6 +145,7 @@ public class crudProfesor extends javax.swing.JFrame {
         lblIdpersona.setText("ID PERSONA");
 
         txtIdpersona.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtIdpersona.setEnabled(false);
 
         lblDUI.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDUI.setText("DUI");
@@ -242,33 +243,39 @@ public class crudProfesor extends javax.swing.JFrame {
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtIdpersona, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                                .addComponent(txtDUI, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUsu, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jCRUDLayout.createSequentialGroup()
-                                .addComponent(btnGuardar)
+                                .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtIdpersona, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDUI, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUsu, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(4, 4, 4))
+                            .addGroup(jCRUDLayout.createSequentialGroup()
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(26, 26, 26)
-                                .addComponent(btnEliminar)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(27, 27, 27)
-                                .addComponent(btnLimpiar))))
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(lblPass))
+                        .addComponent(lblPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(132, 132, 132))
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(lblIdpersona))
+                        .addComponent(lblIdpersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(113, 113, 113))
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(lblDUI))
+                        .addComponent(lblDUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(133, 133, 133))
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(lblUsu)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(lblUsu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(117, 117, 117)))
+                .addGap(92, 92, 92)
                 .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCRUDLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCRUDLayout.createSequentialGroup()
                         .addComponent(lblIDPersona1)
@@ -281,30 +288,31 @@ public class crudProfesor extends javax.swing.JFrame {
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addComponent(lblIDPersona1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jCRUDLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblIdpersona)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDUI)
+                        .addComponent(lblDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(lblUsu)
+                        .addComponent(lblUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(lblPass)
+                        .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGuardar)
                             .addComponent(btnEliminar)
-                            .addComponent(btnLimpiar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnLimpiar))
+                        .addGap(1, 1, 1)))
+                .addGap(16, 16, 16))
         );
 
         panelD.addTab("CRUD", jCRUD);
@@ -322,16 +330,16 @@ public class crudProfesor extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(271, 271, 271)
-                .addComponent(lblDatosPro, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblDatosPro, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(286, 286, 286))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblDatosPro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelD, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelD, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -402,12 +410,17 @@ public class crudProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_personaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        Profesor pro = new Profesor();
+        if(id!=0){
+              Profesor pro = new Profesor();
         pro.setIDprofesor(id);
         ClsProfesor prof = new ClsProfesor();
         prof.Eliminar(pro);
         Limpiar();
         MostrarPro();
+        }else{
+        JOptionPane.showMessageDialog(null,"Debe de seleccionar un profesor");
+        }
+      
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tb_ProfesorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ProfesorMouseClicked
