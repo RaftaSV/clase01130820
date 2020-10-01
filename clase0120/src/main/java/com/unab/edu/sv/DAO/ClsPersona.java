@@ -34,6 +34,7 @@ public class ClsPersona {
                 Persona.setApellido(ResultadoConsulta.getString("apellido"));
                 Persona.setEdad(ResultadoConsulta.getInt("edad"));
                 Persona.setSexo(ResultadoConsulta.getString("sexo"));
+                Persona.setFecha(ResultadoConsulta.getDate("Fecha"));
                 Personas.add(Persona);
             }
 
@@ -45,11 +46,12 @@ public class ClsPersona {
 
     public void AgregarPersona(personas Per) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?)");
             Statement.setString("pNombre", Per.getNombre());
             Statement.setString("pApellido", Per.getApellido());
             Statement.setInt("pEdad", Per.getEdad());
             Statement.setString("pSexo", Per.getSexo());
+            Statement.setDate("pFecha", new java.sql.Date(Per.getFecha().getTime()));
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado Exitoso");
             conectar.close();
