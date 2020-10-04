@@ -22,6 +22,7 @@ public class ClsPersona {
     conexionBd con = new conexionBd();
     Connection conectar = con.retornarConexion();
 
+      
     public ArrayList<personas> mostrarPersona() {
         ArrayList<personas> Personas = new ArrayList<>();
         try {
@@ -73,14 +74,16 @@ public class ClsPersona {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
+
     public void EditarPersona(personas Per) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?,?)");
             Statement.setInt("pIdPersona", Per.getIdpersona());
             Statement.setString("pNombre", Per.getNombre());
             Statement.setString("pApellido", Per.getApellido());
             Statement.setInt("pEdad", Per.getEdad());
             Statement.setString("pSexo", Per.getSexo());
+            Statement.setDate("pFecha", new java.sql.Date(Per.getFecha().getTime()));
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Cambio Exitoso");
         } catch (SQLException ex) {

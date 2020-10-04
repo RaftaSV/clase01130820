@@ -9,6 +9,7 @@ import com.unab.edu.sv.DAO.ClsPersona;
 import com.unab.edu.sv.clase0120.Entidades.personas;
 import com.unab.edu.sv.clase0120.mysql.conexionBd;
 import java.sql.Connection;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class crudPersonas extends javax.swing.JFrame {
         MostrarTablaPersona();
 
     }
-    SimpleDateFormat formato = new SimpleDateFormat("yy/MM/dd");
+    SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
 
     void MostrarTablaPersona() {
         String TITULOS[] = {"ID", "Nombre", "Apellido", "Edad", "Sexo", "Fecha"};
@@ -47,7 +48,11 @@ public class crudPersonas extends javax.swing.JFrame {
             filas[2] = IterarDatosPersonas.getApellido();
             filas[3] = String.valueOf(IterarDatosPersonas.getEdad());
             filas[4] = IterarDatosPersonas.getSexo();
-            filas[5] = String.valueOf(IterarDatosPersonas.getFecha());
+            if (IterarDatosPersonas.getFecha() != null) {
+                filas[5] = String.valueOf(formato.format(IterarDatosPersonas.getFecha()));
+            } else {
+                filas[5] = String.valueOf("");
+            }
             ModeloTabla.addRow(filas);
         }
         tb_persona.setModel(ModeloTabla);
@@ -78,7 +83,7 @@ public class crudPersonas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
+        Limpiar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnConexion = new javax.swing.JButton();
         txtFecha = new com.toedter.calendar.JDateChooser();
@@ -109,6 +114,7 @@ public class crudPersonas extends javax.swing.JFrame {
 
         txtSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -134,11 +140,11 @@ public class crudPersonas extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        Limpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Limpiar.setText("Limpiar");
+        Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                LimpiarActionPerformed(evt);
             }
         });
 
@@ -158,8 +164,6 @@ public class crudPersonas extends javax.swing.JFrame {
             }
         });
 
-        txtFecha.setDateFormatString("yyyy-MM-dd");
-
         lblFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFecha.setText("Fecha");
 
@@ -168,15 +172,8 @@ public class crudPersonas extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addComponent(btnEditar)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnEliminar))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFecha)
@@ -191,10 +188,22 @@ public class crudPersonas extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addComponent(txtID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(51, 51, 51)
-                .addComponent(btnConexion)
-                .addContainerGap())
+                                .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnGuardar))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(btnEliminar)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Limpiar)
+                        .addGap(7, 7, 7)
+                        .addComponent(btnConexion)
+                        .addGap(2, 2, 2)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +235,7 @@ public class crudPersonas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnEditar)
+                    .addComponent(Limpiar)
                     .addComponent(btnEliminar)
                     .addComponent(btnConexion))
                 .addGap(25, 25, 25))
@@ -260,7 +269,7 @@ public class crudPersonas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCRUD)
+                .addComponent(btnCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -282,29 +291,43 @@ public class crudPersonas extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         ClsPersona persona = new ClsPersona();
-        personas Persona = new personas();
-        Persona.setNombre(txtNombre.getText());
-        Persona.setApellido(txtApellido.getText());
-        Persona.setEdad(Integer.parseInt(txtEdad.getText()));
-        Persona.setSexo(txtSexo.getText());
-        Persona.setFecha(txtFecha.getDate());
-        persona.AgregarPersona(Persona);
+
+        if (txtID.getText() == "" || txtID.getText().isEmpty() || txtID.getText()==null) {
+            personas Persona = new personas();
+            Persona.setNombre(txtNombre.getText());
+            Persona.setApellido(txtApellido.getText());
+            Persona.setEdad(Integer.parseInt(txtEdad.getText()));
+            Persona.setSexo(txtSexo.getText());
+            Persona.setFecha(txtFecha.getDate());
+            persona.AgregarPersona(Persona);
+        } else {
+            personas Person = new personas();
+            Person.setIdpersona(Integer.parseInt(txtID.getText()));
+            Person.setNombre(txtNombre.getText());
+            Person.setApellido(txtApellido.getText());
+            Person.setEdad(Integer.parseInt(txtEdad.getText()));
+            Person.setSexo(txtSexo.getText());
+            Person.setFecha(txtFecha.getDate());
+            persona.EditarPersona(Person);
+            MostrarTablaPersona();
+        }
+        Limpiar();
         MostrarTablaPersona();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    void Limpiar() {
+        txtApellido.setText(null);
+        txtEdad.setText(null);
+        txtFecha.setDate(null);
+        txtID.setText(null);
+        txtNombre.setText(null);
+        txtSexo.setText(null);
+    }
+    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
         // TODO add your handling code here:
+        Limpiar();
 
-        ClsPersona persona = new ClsPersona();
-        personas Persona = new personas();
-        Persona.setIdpersona(Integer.parseInt(txtID.getText()));
-        Persona.setNombre(txtNombre.getText());
-        Persona.setApellido(txtApellido.getText());
-        Persona.setEdad(Integer.parseInt(txtEdad.getText()));
-        Persona.setSexo(txtSexo.getText());
-        persona.EditarPersona(Persona);
-        MostrarTablaPersona();
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_LimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -329,7 +352,13 @@ public class crudPersonas extends javax.swing.JFrame {
         String sexo = String.valueOf(tb_persona.getValueAt(fila, 4));
         txtSexo.setText(sexo);
         String fecha = String.valueOf(tb_persona.getValueAt(fila, 5));
-        Date setdate = new Date();
+        try {
+            Date setfecha = new Date();
+            setfecha = formato.parse(fecha);
+            txtFecha.setDate(setfecha);
+        } catch (ParseException e) {
+            txtFecha.setDate(null);
+        }
 
     }//GEN-LAST:event_tb_personaMouseClicked
 
@@ -369,9 +398,9 @@ public class crudPersonas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Limpiar;
     private javax.swing.JTabbedPane btnCRUD;
     private javax.swing.JButton btnConexion;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
