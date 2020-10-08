@@ -26,7 +26,7 @@ public class crudEstudiante extends javax.swing.JFrame {
 
     public crudEstudiante() {
         initComponents();
-       
+
         MostrarEstudiantes();
         Displaymenber();
 
@@ -35,18 +35,19 @@ public class crudEstudiante extends javax.swing.JFrame {
     String passs = "";
 
     String ValueMenber[];
-    int contador=0;
+    int contador = 1;
 
     void Displaymenber() {
         DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
         ClsPersona ClasePersona = new ClsPersona();
         ArrayList<personas> persona = ClasePersona.mostrarPersona();
-        ValueMenber = new String[persona.size()];
-        String Filas[] = new String[3];
+        ValueMenber = new String[persona.size() + 1];
+        String Filas[] = new String[5];
+        cbdefault.addElement("");
         for (var i : persona) {
             Filas[0] = String.valueOf(i.getIdpersona());
             Filas[1] = i.getNombre();
-            ValueMenber[contador]=Filas[0];
+            ValueMenber[contador] = Filas[0];
             cbdefault.addElement(Filas[1]);
             contador++;
         }
@@ -297,46 +298,48 @@ public class crudEstudiante extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (dato == 0) {
-            Estudiante es = new Estudiante();
-            es.setMatricula(Integer.parseInt(txtMatricula.getText()));
-            es.setIdpersona(Integer.parseInt(ValueMenber[cbPersonas.getSelectedIndex()]));
-            es.setUsu(txtUsuario.getText());
-            es.setPass(txtPass.getText());
-            es.setNIE(Integer.parseInt(txtNIE.getText()));
-            ClsEstudiante estudiante = new ClsEstudiante();
-            estudiante.GuardarEstudiante(es);
-         
-       
-        } else {
-            if (passs.endsWith(txtPass.getText())) {
+        try {
+            if (dato == 0) {
                 Estudiante es = new Estudiante();
-                es.setIdEstudiante(Integer.parseInt(txtID.getText()));
                 es.setMatricula(Integer.parseInt(txtMatricula.getText()));
                 es.setIdpersona(Integer.parseInt(ValueMenber[cbPersonas.getSelectedIndex()]));
                 es.setUsu(txtUsuario.getText());
                 es.setPass(txtPass.getText());
                 es.setNIE(Integer.parseInt(txtNIE.getText()));
                 ClsEstudiante estudiante = new ClsEstudiante();
-                estudiante.ActualizarEstudianteSC(es);
+                estudiante.GuardarEstudiante(es);
 
-              
             } else {
-                Estudiante est = new Estudiante();
-                est.setIdEstudiante(Integer.parseInt(txtID.getText()));
-                est.setMatricula(Integer.parseInt(txtMatricula.getText()));
-                est.setIdpersona(Integer.parseInt(ValueMenber[cbPersonas.getSelectedIndex()]));
-                est.setUsu(txtUsuario.getText());
-                est.setPass(txtPass.getText());
-                est.setNIE(Integer.parseInt(txtNIE.getText()));
-                ClsEstudiante estudiante = new ClsEstudiante();
-                estudiante.ActualizarEstudiante(est);
+                if (passs.endsWith(txtPass.getText())) {
+                    Estudiante es = new Estudiante();
+                    es.setIdEstudiante(Integer.parseInt(txtID.getText()));
+                    es.setMatricula(Integer.parseInt(txtMatricula.getText()));
+                    es.setIdpersona(Integer.parseInt(ValueMenber[cbPersonas.getSelectedIndex()]));
+                    es.setUsu(txtUsuario.getText());
+                    es.setPass(txtPass.getText());
+                    es.setNIE(Integer.parseInt(txtNIE.getText()));
+                    ClsEstudiante estudiante = new ClsEstudiante();
+                    estudiante.ActualizarEstudianteSC(es);
 
+                } else {
+                    Estudiante est = new Estudiante();
+                    est.setIdEstudiante(Integer.parseInt(txtID.getText()));
+                    est.setMatricula(Integer.parseInt(txtMatricula.getText()));
+                    est.setIdpersona(Integer.parseInt(ValueMenber[cbPersonas.getSelectedIndex()]));
+                    est.setUsu(txtUsuario.getText());
+                    est.setPass(txtPass.getText());
+                    est.setNIE(Integer.parseInt(txtNIE.getText()));
+                    ClsEstudiante estudiante = new ClsEstudiante();
+                    estudiante.ActualizarEstudiante(est);
+
+                }
             }
-        }
 
-        MostrarEstudiantes();
-        limpiar();
+            MostrarEstudiantes();
+            limpiar();
+        } catch (Exception e) {
+
+        }
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -357,6 +360,15 @@ public class crudEstudiante extends javax.swing.JFrame {
         String nie = String.valueOf(tb_Estudiante.getValueAt(fila, 6));
         txtNIE.setText(nie);
         dato = 1;
+        int seleccionadorDeVista = 0;
+        for (var i : ValueMenber) {
+            if (Idper.equals(i)) {
+            cbPersonas.setSelectedIndex(seleccionadorDeVista);
+           
+            }
+            seleccionadorDeVista += 1;
+       
+        }
     }//GEN-LAST:event_tb_EstudianteMouseClicked
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -366,13 +378,12 @@ public class crudEstudiante extends javax.swing.JFrame {
     public void limpiar() {
         txtID.setText("0");
         dato = 0;
-  //      txtIDPersona.setText("");
+        cbPersonas.setSelectedIndex(0);
         txtMatricula.setText("");
         txtNIE.setText("");
         txtPass.setText("");
         txtUsuario.setText("");
     }
-
 
     /**
      * @param args the command line arguments

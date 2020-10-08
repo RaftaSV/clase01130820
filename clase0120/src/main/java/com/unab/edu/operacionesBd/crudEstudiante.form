@@ -133,16 +133,14 @@
                               <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblIDPersona" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtMatricula" alignment="0" pref="356" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtNIE" alignment="0" pref="356" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="txtNIE" alignment="0" pref="356" max="32767" attributes="0"/>
                               <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtID" alignment="0" pref="356" max="32767" attributes="0"/>
                           </Group>
