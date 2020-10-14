@@ -12,6 +12,7 @@ import com.unab.edu.sv.clase0120.Entidades.personas;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,31 +26,35 @@ public class crudProfesor extends javax.swing.JFrame {
     public crudProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        MostrarPersona();
         MostrarPro();
         Limpiar();
     }
     int id = 0;
     String pass="";
 
+
     @SuppressWarnings("unchecked")
 
-    void MostrarPersona() {
-        String[] Titulos = {"ID", "NOMBRE", "APELLIDO"};
-        DefaultTableModel modelo = new DefaultTableModel(null, Titulos);
-        ClsPersona persona = new ClsPersona();
-        ArrayList<personas> Person = persona.mostrarPersona();
-        String Filas[] = new String[3];
-        for (var i : Person) {
+    String ValueMenber[];
+    int contador=1;
+    
+    void Displaymenber() {
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        ClsPersona ClasePersona = new ClsPersona();
+        ArrayList<personas> persona = ClasePersona.mostrarPersona();
+        ValueMenber = new String[persona.size() + 1];
+        String Filas[] = new String[5];
+        cbdefault.addElement("");
+        for (var i : persona) {
             Filas[0] = String.valueOf(i.getIdpersona());
-            Filas[1] = String.valueOf(i.getNombre());
-            Filas[2] = String.valueOf(i.getApellido());
-            modelo.addRow(Filas);
-
+            Filas[1] = i.getNombre();
+            ValueMenber[contador] = Filas[0];
+            cbdefault.addElement(Filas[1]);
+            contador++;
         }
-        tb_persona.setModel(modelo);
+        cbPersonas.setModel(cbdefault);
+        cb
     }
-
     void MostrarPro() {
         String Titulos[] = {"IDPROFESOR", "IDPERSONA", "NOMBRE", "DUI", "USUARIO", "PASS"};
         DefaultTableModel Model = new DefaultTableModel(null, Titulos);
@@ -71,7 +76,7 @@ public class crudProfesor extends javax.swing.JFrame {
     void Limpiar() {
         id = 0;
         txtDUI.setText("");
-        txtIdpersona.setText("");
+        
         txtPass.setText("");
         txtUsu.setText("");
         pass = "";
@@ -86,7 +91,6 @@ public class crudProfesor extends javax.swing.JFrame {
         tb_Profesor = new javax.swing.JTable();
         jCRUD = new javax.swing.JPanel();
         lblIdpersona = new javax.swing.JLabel();
-        txtIdpersona = new javax.swing.JTextField();
         lblDUI = new javax.swing.JLabel();
         txtDUI = new javax.swing.JTextField();
         lblUsu = new javax.swing.JLabel();
@@ -96,9 +100,7 @@ public class crudProfesor extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb_persona = new javax.swing.JTable();
-        lblIDPersona1 = new javax.swing.JLabel();
+        cbPersonas = new javax.swing.JComboBox<>();
         lblDatosPro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,9 +147,6 @@ public class crudProfesor extends javax.swing.JFrame {
 
         lblIdpersona.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblIdpersona.setText("ID PERSONA");
-
-        txtIdpersona.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtIdpersona.setEnabled(false);
 
         lblDUI.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDUI.setText("DUI");
@@ -203,118 +202,70 @@ public class crudProfesor extends javax.swing.JFrame {
             }
         });
 
-        tb_persona.setBackground(new java.awt.Color(153, 255, 153));
-        tb_persona.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3"
-            }
-        ));
-        tb_persona.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_personaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tb_persona);
-
-        lblIDPersona1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblIDPersona1.setText("Selecione la persona");
+        cbPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jCRUDLayout = new javax.swing.GroupLayout(jCRUD);
         jCRUD.setLayout(jCRUDLayout);
         jCRUDLayout.setHorizontalGroup(
             jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCRUDLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jCRUDLayout.createSequentialGroup()
-                                .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtIdpersona, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDUI, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUsu, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(4, 4, 4))
-                            .addGroup(jCRUDLayout.createSequentialGroup()
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(26, 26, 26)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDUI, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsu, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbPersonas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(4, 4, 4))
                     .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(lblPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(132, 132, 132))
-                    .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(lblIdpersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(113, 113, 113))
-                    .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(lblDUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(133, 133, 133))
-                    .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(lblUsu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(117, 117, 117)))
-                .addGap(92, 92, 92)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))
+                .addGap(113, 113, 113))
+            .addGroup(jCRUDLayout.createSequentialGroup()
                 .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCRUDLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCRUDLayout.createSequentialGroup()
-                        .addComponent(lblIDPersona1)
-                        .addGap(113, 113, 113))))
+                    .addGroup(jCRUDLayout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jCRUDLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(lblUsu))
+                    .addGroup(jCRUDLayout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(lblDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jCRUDLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(lblIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jCRUDLayout.setVerticalGroup(
             jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCRUDLayout.createSequentialGroup()
-                .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addComponent(lblIDPersona1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jCRUDLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblIdpersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(lblUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGuardar)
-                            .addComponent(btnEliminar)
-                            .addComponent(btnLimpiar))
-                        .addGap(1, 1, 1)))
-                .addGap(16, 16, 16))
+                .addContainerGap()
+                .addComponent(lblIdpersona)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(txtUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addGroup(jCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         panelD.addTab("CRUD", jCRUD);
@@ -369,29 +320,21 @@ public class crudProfesor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (id == 0) {
-            if (!txtDUI.getText().isEmpty() && !txtIdpersona.getText().isEmpty() && !txtPass.getText().isEmpty() && !txtUsu.getText().isEmpty()) {
                 Profesor profe = new Profesor();
-                profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
+                //profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
                 profe.setDUI(txtDUI.getText());
                 profe.setUsuario(txtUsu.getText());
                 profe.setPass(txtPass.getText());
                 ClsProfesor pro = new ClsProfesor();
                 pro.Guardar(profe);
                 Limpiar();
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Todos los campos son Obligatorio");
-            }
-
             MostrarPro();
         } else {
 
-            if (!txtDUI.getText().isEmpty() && !txtIdpersona.getText().isEmpty() && !txtPass.getText().isEmpty() && !txtUsu.getText().isEmpty()) {
                 if (pass.equals(txtPass.getText())) {
                     Profesor prof = new Profesor();
                     prof.setIDprofesor(id);
-                    prof.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
+//                    prof.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
                     prof.setDUI(txtDUI.getText());
                     prof.setUsuario(txtUsu.getText());
                     prof.setPass(txtPass.getText());
@@ -402,7 +345,7 @@ public class crudProfesor extends javax.swing.JFrame {
                 } else {
                     Profesor profe = new Profesor();
                     profe.setIDprofesor(id);
-                    profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
+//                    profe.setIDpersona(Integer.parseInt(txtIdpersona.getText()));
                     profe.setDUI(txtDUI.getText());
                     profe.setUsuario(txtUsu.getText());
                     profe.setPass(txtPass.getText());
@@ -410,19 +353,9 @@ public class crudProfesor extends javax.swing.JFrame {
                     pro.Actualizar(profe);
                     MostrarPro();
                     Limpiar();
-                 
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Todos los campos son Obligatorio");
-
             }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void tb_personaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_personaMouseClicked
-        int fila = tb_persona.getSelectedRow();
-        txtIdpersona.setText(String.valueOf(tb_persona.getValueAt(fila, 0)));
-    }//GEN-LAST:event_tb_personaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (id != 0) {
@@ -443,7 +376,7 @@ public class crudProfesor extends javax.swing.JFrame {
         int fila = tb_Profesor.getSelectedRow();
         String ID = String.valueOf(tb_Profesor.getValueAt(fila, 0));
         id = Integer.valueOf(ID);
-        txtIdpersona.setText(String.valueOf(tb_Profesor.getValueAt(fila, 1)));
+//        txtIdpersona.setText(String.valueOf(tb_Profesor.getValueAt(fila, 1)));
         txtDUI.setText(String.valueOf(tb_Profesor.getValueAt(fila, 3)));
         txtUsu.setText(String.valueOf(tb_Profesor.getValueAt(fila, 4)));
         pass = String.valueOf(tb_Profesor.getValueAt(fila, 5));
@@ -491,21 +424,18 @@ public class crudProfesor extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cbPersonas;
     private javax.swing.JPanel jCRUD;
     private javax.swing.JScrollPane jDatos;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDUI;
     private javax.swing.JLabel lblDatosPro;
-    private javax.swing.JLabel lblIDPersona1;
     private javax.swing.JLabel lblIdpersona;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblUsu;
     private javax.swing.JTabbedPane panelD;
     private javax.swing.JTable tb_Profesor;
-    private javax.swing.JTable tb_persona;
     private javax.swing.JTextField txtDUI;
-    private javax.swing.JTextField txtIdpersona;
     private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtUsu;
     // End of variables declaration//GEN-END:variables

@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.SingleSelectionModel;
 
 import javax.swing.table.DefaultTableModel;
@@ -291,8 +292,8 @@ public class crudPersonas extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         ClsPersona persona = new ClsPersona();
-
-        if (txtID.getText() == "" || txtID.getText().isEmpty() || txtID.getText()==null) {
+        try {
+            if (txtID.getText() == "" || txtID.getText().isEmpty() || txtID.getText()==null) {
             personas Persona = new personas();
             Persona.setNombre(txtNombre.getText());
             Persona.setApellido(txtApellido.getText());
@@ -311,6 +312,10 @@ public class crudPersonas extends javax.swing.JFrame {
             persona.EditarPersona(Person);
             MostrarTablaPersona();
         }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos");
+        }
+        
         Limpiar();
         MostrarTablaPersona();
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -319,7 +324,7 @@ public class crudPersonas extends javax.swing.JFrame {
         txtApellido.setText(null);
         txtEdad.setText(null);
         txtFecha.setDate(null);
-        txtID.setText(null);
+  
         txtNombre.setText(null);
         txtSexo.setText(null);
     }

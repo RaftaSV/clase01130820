@@ -29,7 +29,7 @@ public class crudEstudiante extends javax.swing.JFrame {
 
         MostrarEstudiantes();
         Displaymenber();
-
+ 
         this.setLocationRelativeTo(null);
     }
     String passs = "";
