@@ -26,6 +26,7 @@ public class crudProfesor extends javax.swing.JFrame {
     public crudProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Displaymenber();
         MostrarPro();
         Limpiar();
     }
@@ -48,12 +49,13 @@ public class crudProfesor extends javax.swing.JFrame {
         for (var i : persona) {
             Filas[0] = String.valueOf(i.getIdpersona());
             Filas[1] = i.getNombre();
+            
             ValueMenber[contador] = Filas[0];
             cbdefault.addElement(Filas[1]);
             contador++;
         }
         cbPersonas.setModel(cbdefault);
-        cb
+        
     }
     void MostrarPro() {
         String Titulos[] = {"IDPROFESOR", "IDPERSONA", "NOMBRE", "DUI", "USUARIO", "PASS"};
